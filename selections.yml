@@ -1,0 +1,13 @@
+selections:
+- deepTauVsJets_loose_1,>,0.5
+- deepTauVsJets_loose_2,>,0.5
+- deepTauVsJets_loose_3,>,0.5
+- deepTauVsJets_loose_4,>,0.5
+- deepTauVsMu_vloose_1,>,0.5 
+- deepTauVsMu_vloose_2,>,0.5 
+- deepTauVsMu_vloose_3,>,0.5 
+- deepTauVsMu_vloose_4,>,0.5 
+- deepTauVsEle_vvloose_1,>,0.5
+- deepTauVsEle_vvloose_2,>,0.5
+- deepTauVsEle_vvloose_3,>,0.5 
+- deepTauVsEle_vvloose_4,>,0.5
