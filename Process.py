@@ -26,37 +26,36 @@ with uproot.open(args.file) as file:
     # Process selections
     selection_mask = np.ones(len(tree), dtype=bool)  # Start with a mask that selects everything
     for selection in selections:
-        and_conditions = selection.split('&')
-        and_mask = np.ones(len(tree), dtype=bool)
-        for condition in and_conditions:
-            or_conditions = condition.split('|')
-            or_mask = np.zeros(len(tree), dtype=bool)
-            for or_condition in or_conditions:
-                variable, operation, value = or_condition.split(',')
+        or_conditions = selection.split('|')
+        or_mask = np.zeros(len(tree), dtype=bool)
+        for or_condition in or_conditions:
+            and_conditions = or_condition.split('&')
+            and_mask = np.ones(len(tree), dtype=bool)
+            for and_condition in and_conditions:
+                variable, operation, value = and_condition.split(',')
                 value = float(value)  # Assuming numerical comparisons; adjust as needed
                 array = tree[variable].array()
 
                 if operation == '>':
-                    or_mask |= array > value
+                    and_mask &= array > value
                 elif operation == '<':
-                    or_mask |= array < value
+                    and_mask &= array < value
                 elif operation == '>=':
-                    or_mask |= array >= value
+                    and_mask &= array >= value
                 elif operation == '<=':
-                    or_mask |= array <= value
+                    and_mask &= array <= value
                 elif operation == '==':
-                    or_mask |= array == value
+                    and_mask &= array == value
                 else:
                     raise ValueError("Unsupported operation: {}".format(operation))
             
-            and_mask &= or_mask
+            or_mask |= and_mask
         
-        selection_mask &= and_mask
+        selection_mask &= or_mask
 
     dataset = pd.DataFrame()
     for leaf in args.variable:
         dataset[leaf] = tree[leaf].array()[selection_mask]
 
     print(dataset.head())
-
-
+    print(len(dataset))

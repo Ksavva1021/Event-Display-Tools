@@ -7,4 +7,4 @@ selections:
 - deepTauVsMu_vloose_4,>,0.5 
 - deepTauVsEle_vvloose_3,>,0.5 
 - deepTauVsEle_vvloose_4,>,0.5
-- trg_singleelectron_1,==,1|trg_singlemuon_2,==,1
+- pt_1,>,50&trg_singleelectron_1,==,1|trg_singlemuon_2,==,1
