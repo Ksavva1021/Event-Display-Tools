@@ -1,7 +1,7 @@
 # Running instructions:
 
 ## Process.py:
-Intended to process a ROOT file (flat tree) apply a series of selections and return some variables of interest for the corresponding surviving events.
+Intended to process a ROOT file (flat tree), apply a series of selections, and return some variables of interest for the corresponding surviving events.
 - --file: Path to the ROOT file
 - --tree: Name of the TTree
 - --selections_file: Path to the YAML file containing the selections (Look at example)
